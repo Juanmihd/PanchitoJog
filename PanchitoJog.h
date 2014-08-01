@@ -1,14 +1,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-// (C) Andy Thomason 2012-2014
+// (C) Juanmi Huertas Delgado 2014
 //
-// Modular Framework for OpenGLES2 rendering on multiple platforms.
+// This will content the full game, 
+//		PanchitoJog is the app game, it will required the following 
+//		PanchitoObject represent the runner of the game
+//			PanchitoObject is located in another file
+//		World this class contents all the elements that will appear in the world
 //
+#include "PanchitoObject.h"
+
 namespace octet {
   /// Scene containing a box with octet.
   class PanchitoJog : public app {
     // scene for drawing box
     ref<visual_scene> app_scene;
+
+	//this will be for the camera
+
   public:
     /// this is called when we construct the class before everything is initialised.
     PanchitoJog(int argc, char **argv) : app(argc, argv) {

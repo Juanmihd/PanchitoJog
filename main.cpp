@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-// (C) Andy Thomason 2012-2014
+// (C) Juanmi Huertas Delgado 2014
 //
-// Modular Framework for OpenGLES2 rendering on multiple platforms.
+// This is supposed to be a Physics Game with Panchito as protagonist
 //
-// Text overlay
+// Enabling Bullet Physics!
 //
 #define OCTET_BULLET 1
 
