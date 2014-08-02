@@ -11,31 +11,64 @@ namespace octet {
 		//where is Panchito! (this position matches with the bottom of the hat, 
 		//						and the top of his body) CENTER of Panchito
 		mat4t modelToWorld;
+		scene_node *panchitoNode;
+		scene_node *hatNode;
+		scene_node *bodyNode;
 
 		//First version, Panchito is simple right now! (2 cylinders (hat) + 1 box (body)!)
 		float halfWidth;
 		float halfHeight;
 
 		//Panchito is easy to draw, he has two colors!
-		static vec4 colorHat;
-		static vec4 colorBody;
+		vec4 colorHat;
+		vec4 colorBody;
+
+		//Panchito is jogging! These variables defines its jumping and tilting
+		float jump;
+		float tilt;
+		int jumpTics;
+		int directionJump;
+		int tiltTics;
+		int directionTilt;
+
 	public:
 		PanchitoObject() {
+			panchitoNode = 0;
+			hatNode = 0;
+			bodyNode = 0;
 		}
 
 		~PanchitoObject() {
+			delete panchitoNode;
+			delete hatNode;
+			delete bodyNode;
 		}
 
 		//This is called to initializate Panchito in a position
-		void init(float x, float y, float z){
+		void init(float x, float y, float z, float scale){
 			//He will have a fixed color, and fix sizes, so we init them
-			colorHat = vec4(1,1,1,1); //the hat is black!
+			colorHat = vec4(0,0,0,1); //the hat is black!
 			colorBody = vec4(1,0,0,1); //the body is red!!
-			halfWidth = 0.5f;
-			halfHeight = 0.5f;
+			halfWidth = 1.f*scale;
+			halfHeight = 1.f*scale;
 			//and now we take x and y (position of Panchito), that can be fixed outside
 			modelToWorld.loadIdentity();
 			modelToWorld.translate(x, y, z);
+			//This is the node that holds all panchito. hat, body, arms, legs ar children of that node
+			if(panchitoNode == 0)
+				panchitoNode = new scene_node(modelToWorld,atom_);
+			modelToWorld.loadIdentity();
+			if(hatNode == 0)
+				hatNode = new scene_node(modelToWorld,atom_);
+			if(hatNode == 0)
+				bodyNode = new scene_node(modelToWorld,atom_);
+			//this variables are for Panchito's jogging
+			jump = 0.01f;
+			jumpTics = 5;
+			directionJump = -1;
+			tilt = 0.01f;
+			tiltTics = 10;
+			directionTilt = 1;
 		}
 
 		//This method load Panchito to the current scene
@@ -47,26 +80,50 @@ namespace octet {
 			//Then Panchito itself
 			//First the body
 			mesh_sphere *body = new mesh_sphere(vec3(0,0,0),halfHeight);
-			mat4t bodyPosition = modelToWorld;
+			mat4t bodyPosition;
+			bodyPosition.loadIdentity();
 			bodyPosition.translate(0,-halfWidth*0.5f,0);
 			scene_node *nodeBody = new scene_node(bodyPosition,atom_);
-			scene->add_child(nodeBody);
+			panchitoNode->add_child(nodeBody);
 			scene->add_mesh_instance(new mesh_instance(nodeBody,body,materialBody));
 
 			//Then the hat (bottom and top)
-			mesh_cylinder *hatBottom = new mesh_cylinder(vec3(halfWidth*2,halfHeight*0.1,halfWidth*2));
-			mat4t hatBottomPosition = modelToWorld;
-			bodyPosition.translate(0,halfWidth*0.05f,0);
+			mesh_cylinder *hatBottom = new mesh_cylinder(vec3(halfWidth*2.f,halfHeight*0.015f,halfWidth*2.f));
+			mat4t hatBottomPosition;
+			hatBottomPosition.loadIdentity();
+			hatBottomPosition.translate(0,0,0);
 			scene_node *nodeHatBottom = new scene_node(hatBottomPosition,atom_);
-			scene->add_child(nodeHatBottom);
+			hatNode->add_child(nodeHatBottom);
 			scene->add_mesh_instance(new mesh_instance(nodeHatBottom,hatBottom,materialHat));
 			
-			mesh_cylinder *hatTop = new mesh_cylinder(vec3(halfWidth,halfHeight*0.9,halfWidth));
-			mat4t hatTopPosition = modelToWorld;
-			bodyPosition.translate(0,halfWidth*0.05f,0);
+			mesh_cylinder *hatTop = new mesh_cylinder(vec3(halfWidth,halfHeight,halfWidth));
+			mat4t hatTopPosition;
+			hatTopPosition.loadIdentity();
+			hatTopPosition.translate(0,halfWidth*0.5f,0);
 			scene_node *nodeHatTop = new scene_node(hatTopPosition,atom_);
-			scene->add_child(nodeHatBottom);
+			hatNode->add_child(nodeHatTop);
 			scene->add_mesh_instance(new mesh_instance(nodeHatTop,hatTop,materialHat));
+
+			panchitoNode->add_child(hatNode);
+			scene->add_child(panchitoNode);
+		}
+
+		void animateJogging(){
+			panchitoNode->translate(vec3(0,directionJump*jump,0));
+			scene_node * child = panchitoNode->get_child(1);
+			child->translate(vec3(0,directionJump*jump*0.5f,0));
+			child = 0;
+			--jumpTics;
+			if(jumpTics == 0){
+				jumpTics = 10;
+				directionJump = -directionJump;
+			}
+			panchitoNode->translate(vec3(directionTilt*tilt,0,0));
+			--tiltTics;
+			if(tiltTics == 0){
+				tiltTics = 20;
+				directionTilt = -directionTilt;
+			}
 		}
 	};
 }
