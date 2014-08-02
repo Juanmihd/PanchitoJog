@@ -9,6 +9,7 @@
 //		World this class contents all the elements that will appear in the world
 //
 #include "PanchitoObject.h"
+#include "terrain.h"
 
 namespace octet {
   /// Scene containing a box with octet.

@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="PanchitoJog.h" />
     <ClInclude Include="PanchitoObject.h" />
+    <ClInclude Include="worldClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
