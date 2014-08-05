@@ -10,6 +10,7 @@ namespace octet {
 	class PanchitoObject{
 		//where is Panchito! (this position matches with the bottom of the hat, 
 		//						and the top of his body) CENTER of Panchito
+		mat4t modelToWorld;
 		scene_node *panchitoNode;
 		scene_node *hatNode;
 		scene_node *bodyNode;
@@ -51,7 +52,6 @@ namespace octet {
 			halfWidth = 1.f*scale;
 			halfHeight = 1.f*scale;
 			//and now we take x and y (position of Panchito), that can be fixed outside
-			mat4t modelToWorld;
 			modelToWorld.loadIdentity();
 			modelToWorld.translate(x, y, z);
 			//This is the node that holds all panchito. hat, body, arms, legs ar children of that node
