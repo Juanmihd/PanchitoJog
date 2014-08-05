@@ -102,6 +102,7 @@ namespace octet {
 			hatTopPosition.translate(0,halfWidth*0.5f,0);
 			scene_node *nodeHatTop = new scene_node(hatTopPosition,atom_);
 			hatNode->add_child(nodeHatTop);
+			hatNode->rotate(10,vec3(1,0,0));
 			scene->add_mesh_instance(new mesh_instance(nodeHatTop,hatTop,materialHat));
 
 			panchitoNode->add_child(hatNode);

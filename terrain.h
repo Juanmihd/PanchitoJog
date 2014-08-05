@@ -11,6 +11,11 @@ namespace octet {
 		//The position where the block is
 		scene_node* blockNode;
 
+		//Terrain has colors (they will have materials, but for now, just color)
+		//And we have the ground, and the artifacts attached
+		vec4 colorGround;
+		vec4 colorArtifacts;
+
 	public:
 		terrainBlock(){
 			blockNode = 0;
