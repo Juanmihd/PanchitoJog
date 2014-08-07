@@ -19,6 +19,7 @@ namespace octet {
 
 	//behold, Panchito!
 	PanchitoObject panchito;
+	terrain world;
 
   public:
     /// this is called when we construct the class before everything is initialised.
@@ -30,8 +31,11 @@ namespace octet {
       app_scene =  new visual_scene();
       app_scene->create_default_camera_and_lights();
 	  
+
       panchito.init(-7,-7,-2,3);
 	  panchito.LoadToScene(app_scene);
+	  // We need to load the world BEFORE init the scene, as we will use the scene to init the blocks
+	  world.init(app_scene);
     }
 
     /// this is called to draw the world

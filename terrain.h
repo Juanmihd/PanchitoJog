@@ -19,8 +19,8 @@ namespace octet {
 
 		//Terrain has colors (they will have materials, but for now, just color)
 		//And we have the ground, and the artifacts attached
-		vec4 colorGround;
-		vec4 colorArtifacts;
+		//vec4 colorGround;
+		//vec4 colorArtifacts;
 
 	public:
 		terrainBlock(){
@@ -32,10 +32,10 @@ namespace octet {
 		}
 
 		//this is called to create a new terrainBlock from the emptyness
-		void init(float x, float z, vec4 colorGround_new, vec4 colorArtifacts_new){
+		void init(float x, float z){
 			//First we ad the colors!
-			colorGround = colorGround_new;
-			colorArtifacts = colorArtifacts_new;
+			//colorGround = vec4(1,1,0,1);
+			//colorArtifacts = vec4(0,0,1,1);
 			//and now we get ready the position. Every single terrainBlock will be at height (y) = 0
 			modelToWorld.loadIdentity();
 			modelToWorld.translate(x,0,z);
@@ -46,16 +46,16 @@ namespace octet {
 
 		void LoadToScene(ref<visual_scene> scene){
 			//First the materials
-			material *materialGround = new material(colorGround);
-			material *materialArtifacts = new material(colorArtifacts);
+			material *materialGround = new material(vec4(1,1,0,1));
+			material *materialArtifacts = new material(vec4(0,0,1,1));
 
 			//Then the ground (floor)
-			mesh_box *ground = new mesh_box(vec3(WIDTH_BLOCK,HEIGTH_BLOCK,LENGTH_BLOCK-1));
+			mesh_box *ground = new mesh_box(vec3(WIDTH_BLOCK,HEIGTH_BLOCK,LENGTH_BLOCK-2));
 			mat4t groundPosition;
 			groundPosition.loadIdentity();
-			scene_node *nodeGround = new scene_node(groundPosition,atom_);
-			blockNode->add_child(nodeGround);
-			scene->add_mesh_instance(new mesh_instance(nodeGround,ground,materialGround);
+			groundPosition.translate(0,0,0);
+			blockNode = new scene_node(groundPosition,atom_);
+			scene->add_mesh_instance(new mesh_instance(blockNode,ground,materialGround));
 		}
 
 		void runBlock(float distance){
@@ -72,28 +72,25 @@ namespace octet {
 		mat4t modelToWorld;
 
 		//The blocks of the terrain, those will move
-		double_list<terrainBlock*> blocks;
 		double_list<scene_node*> blockNodes;
+		terrainBlock blocks [NUM_MAX_BLOCKS];
 
 		//some variables for blocks "running" effect
 		float currentFirstBlockPosition;
+		int currentFirstBlock;
 		int numberBlocks;
 
 		//Scene for drawing items
 		ref<visual_scene> app_scene;
 
-		void add_block(vec4 colorGround, vec4 colorArtifacts){
-			terrainBlock * newTerrainBlock;
-			newTerrainBlock->init(0,numberBlocks*LENGTH_BLOCK,colorGround,colorArtifacts);
-			newTerrainBlock->LoadToScene(app_scene);
-			blocks.push_back(newTerrainBlock);
-			blockNodes.push_back(newTerrainBlock->getNode());
+		void add_block(){
+			blocks[numberBlocks].init(0.f,0.f);
+			blocks[numberBlocks].LoadToScene(app_scene);
 			++numberBlocks;
 		}
 
 		void remove_block(){
-			blockNodes.erase(0);
-			blocks.erase(0);
+			blockNodes.erase(blockNodes.begin());
 		}
 	public:
 		terrain(){
@@ -102,32 +99,29 @@ namespace octet {
 		~terrain(){
 		}
 
-		void LoadToScene(visual_scene * scene){
-			app_scene = scene;
-		}
-
 		// This will initializate the terrain
-		void init(){
-			for(int i=0; i<NUM_MAX_BLOCKS; ++i)
-				add_block(vec4(1,1,1,1),vec4(0,0,1,1));
+		void init(visual_scene * scene){
+			app_scene = scene;
 			currentFirstBlockPosition = 0;
 			numberBlocks = 0;
+			for(int i=0; i<NUM_MAX_BLOCKS; ++i)
+				add_block();
 		}
 
 		// This function will make the ground to "run". 
 		// It will take into account the current speed of Panchito
 		void run_terrainBlocks(float currentSpeed){
-			double_list<terrainBlock*>::iterator it(blocks.begin());
+			/*double_list<terrainBlock>::iterator it(blocks.begin());
 			while(it != blocks.end()){
-				(*it)->runBlock(currentSpeed);
+				it->runBlock(currentSpeed);
 				it++;
 			}
 			currentFirstBlockPosition -= currentSpeed;
 			if(currentFirstBlockPosition <= - LENGTH_BLOCK){
 				currentFirstBlockPosition = 0;
 				remove_block();
-				add_block(vec4(1,1,1,1),vec4(0,0,1,1));
-			}
+				add_block();
+			}*/
 		}
 	};
 }
