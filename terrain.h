@@ -85,7 +85,7 @@ namespace octet {
 
 		void add_block(){
 			blocks[numberBlocks].init(0.f,0.f);
-			blocks[numberBlocks].LoadToScene(app_scene);
+			//blocks[numberBlocks].LoadToScene(app_scene);
 			++numberBlocks;
 		}
 
@@ -122,6 +122,10 @@ namespace octet {
 				remove_block();
 				add_block();
 			}*/
+		}
+
+		void render(){
+			//FILL HERE HOW TO RENDER THIS SCENE!!!!
 		}
 	};
 }
