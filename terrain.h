@@ -16,6 +16,7 @@ namespace octet {
 		//The position where the block is
 		mat4t modelToWorld;
 		scene_node* blockNode;
+		mesh_box ground;
 
 		//Terrain has colors (they will have materials, but for now, just color)
 		//And we have the ground, and the artifacts attached
@@ -60,6 +61,11 @@ namespace octet {
 
 		void runBlock(float distance){
 			blockNode->translate(vec3(0,0,distance));
+		}
+
+		void render(){
+			//Render the ground
+			//Render all the artifacts
 		}
 
 		scene_node * getNode(){
@@ -126,6 +132,10 @@ namespace octet {
 
 		void render(){
 			//FILL HERE HOW TO RENDER THIS SCENE!!!!
+			//Render all blocks of terrain
+			for (int i = 0; i < NUM_MAX_BLOCKS; ++i){
+				blockNodes
+			}
 		}
 	};
 }

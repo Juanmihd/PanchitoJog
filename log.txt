@@ -54,12 +54,12 @@ uniform vec4 diffuse;
 // inputs
 varying vec2 uv_;
 varying vec3 normal_;
-varying vec3 model_pos_;
+varying vec3 camera_pos_;
 varying vec4 color_;
 
 void main() {
   vec3 nnormal = normalize(normal_);
-  vec3 npos = model_pos_;
+  vec3 npos = camera_pos_;
   vec3 diffuse_light = lighting[0].xyz;
   for (int i = 0; i != num_lights; ++i) {
     vec3 light_pos = lighting[i * 4 + 1].xyz;
@@ -77,6 +77,8 @@ void main() {
 
 
 
+program errors
+No errors.
 Vertex shader error:
 No errors.
 
@@ -91,6 +93,8 @@ const int max_lights = 4; varying vec2 uv_; varying vec3 normal_; varying vec3 t
 
 
 
+program errors
+No errors.
 Vertex shader error:
 No errors.
 
@@ -105,6 +109,8 @@ const int max_lights = 4; varying vec2 uv_; varying vec3 normal_; varying vec3 t
 
 
 
+program errors
+No errors.
 Vertex shader error:
 No errors.
 
@@ -161,12 +167,12 @@ uniform vec4 diffuse;
 // inputs
 varying vec2 uv_;
 varying vec3 normal_;
-varying vec3 model_pos_;
+varying vec3 camera_pos_;
 varying vec4 color_;
 
 void main() {
   vec3 nnormal = normalize(normal_);
-  vec3 npos = model_pos_;
+  vec3 npos = camera_pos_;
   vec3 diffuse_light = lighting[0].xyz;
   for (int i = 0; i != num_lights; ++i) {
     vec3 light_pos = lighting[i * 4 + 1].xyz;
@@ -184,6 +190,8 @@ void main() {
 
 
 
+program errors
+No errors.
 Vertex shader error:
 No errors.
 
@@ -240,12 +248,12 @@ uniform vec4 diffuse;
 // inputs
 varying vec2 uv_;
 varying vec3 normal_;
-varying vec3 model_pos_;
+varying vec3 camera_pos_;
 varying vec4 color_;
 
 void main() {
   vec3 nnormal = normalize(normal_);
-  vec3 npos = model_pos_;
+  vec3 npos = camera_pos_;
   vec3 diffuse_light = lighting[0].xyz;
   for (int i = 0; i != num_lights; ++i) {
     vec3 light_pos = lighting[i * 4 + 1].xyz;
@@ -263,3 +271,5 @@ void main() {
 
 
 
+program errors
+No errors.
