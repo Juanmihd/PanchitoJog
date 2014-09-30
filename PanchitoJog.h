@@ -35,7 +35,7 @@ namespace octet {
       panchito.init(-7,-7,-2,3);
 	  panchito.LoadToScene(app_scene);
 	  // We need to load the world BEFORE init the scene, as we will use the scene to init the blocks
-	  world.init(app_scene);
+	 // world.init(app_scene);
     }
 
     /// this is called to draw the world
@@ -52,7 +52,7 @@ namespace octet {
 
 	  // this will draw only the terrain. It's importante to do aside to be able to access to the 
 	  // different blocks of terrain
-	  world.render();
+	  //world.render();
 
 	  // panchito is jogging, we have to animate him accordingly to that
 	  panchito.animateJogging();

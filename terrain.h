@@ -131,11 +131,11 @@ namespace octet {
 		}
 
 		void render(){
-			//FILL HERE HOW TO RENDER THIS SCENE!!!!
+			/*//FILL HERE HOW TO RENDER THIS SCENE!!!!
 			//Render all blocks of terrain
 			for (int i = 0; i < NUM_MAX_BLOCKS; ++i){
 				blockNodes
-			}
+			}*/
 		}
 	};
 }
