@@ -1,16 +1,21 @@
-////////////////////////////////////////////////////////////////////////////////
-//
-// (C) Juanmi Huertas Delgado 2014
-//
-// This will content the full game, 
-//		PanchitoJog is the app game, it will required the following 
-//		PanchitoObject represent the runner of the game
-//			PanchitoObject is located in another file
-//		World this class contents all the elements that will appear in the world
-//
+///
+/// @file PanchitoJog.h
+/// @Author Juanmi Huertas Delgado (Juanmihd)
+/// @date July, 2014
+/// @brief In this file there is the PanchitoJog application
+///
+/// This file contains the core application, but requires the content of
+/// PanchitoObject and Terrain. 
+/// PanchitoObject contains the info regarding Panchito and the object
+///	and terrain obtains the information of the ground
+///
+
 #include "PanchitoObject.h"
 #include "terrain.h"
 
+/**
+* @brief This will 
+*/
 namespace octet {
   /// Scene containing a box with octet.
   class PanchitoJog : public app {
