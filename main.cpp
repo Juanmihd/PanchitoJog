@@ -1,16 +1,13 @@
-/**
-*
-* @file main.cpp
-* @Author Juanmi Huertas Delgado (juanmihd)
-* @date July, 2014
-* @brief This is the main.cpp for the Panchito Jog project
-*
-* In this file you can find the main call to the app.
-* This project started only as an idea to try some of the features of 
-* the OCTET Framework
-*
-*
-*/
+
+/// @file main.cpp
+/// @Author Juanmi Huertas Delgado (juanmihd)
+/// @date July, 2014
+/// @brief This is the main.cpp for the Panchito Jog project
+///
+/// In this file you can find the main call to the app.
+/// This project started only as an idea to try some of the features of 
+/// the OCTET Framework
+///
 
 //This calls and initializes the BULLET library
 #define OCTET_BULLET 1
