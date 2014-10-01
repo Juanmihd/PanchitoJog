@@ -19,7 +19,7 @@ namespace octet {
 
 	//behold, Panchito!
 	PanchitoObject panchito;
-	terrain world;
+	//terrain world;
 
   public:
     /// this is called when we construct the class before everything is initialised.

@@ -88,18 +88,22 @@ namespace octet {
 			scene->add_mesh_instance(new mesh_instance(nodeBody,body,materialBody));
 
 			//Then the hat (bottom and top)
-			mesh_cylinder *hatBottom = new mesh_cylinder(vec3(halfWidth*2.f,halfHeight*0.015f,halfWidth*2.f));
+			mesh_cylinder *hatBottom = new mesh_cylinder(zcylinder(),mat4t(),30);
 			mat4t hatBottomPosition;
 			hatBottomPosition.loadIdentity();
-			hatBottomPosition.translate(0,0,0);
+			hatBottomPosition.translate(0,.2f*halfHeight,0);
+			hatBottomPosition.scale(4, .025f, 4);
+			hatBottomPosition.rotate(90, 1, 0, 0);
 			scene_node *nodeHatBottom = new scene_node(hatBottomPosition,atom_);
 			hatNode->add_child(nodeHatBottom);
 			scene->add_mesh_instance(new mesh_instance(nodeHatBottom,hatBottom,materialHat));
 			
-			mesh_cylinder *hatTop = new mesh_cylinder(vec3(halfWidth,halfHeight,halfWidth));
+			mesh_cylinder *hatTop = new mesh_cylinder(zcylinder(), mat4t(), 30);
 			mat4t hatTopPosition;
 			hatTopPosition.loadIdentity();
-			hatTopPosition.translate(0,halfWidth*0.5f,0);
+			hatTopPosition.translate(0, .8f*halfHeight, 0);
+			hatTopPosition.scale(2.5f, 3, 2.5f);
+			hatTopPosition.rotate(90, 1, 0, 0);
 			scene_node *nodeHatTop = new scene_node(hatTopPosition,atom_);
 			hatNode->add_child(nodeHatTop);
 			hatNode->rotate(10,vec3(1,0,0));
