@@ -13,9 +13,9 @@
 #include "PanchitoObject.h"
 #include "terrain.h"
 
-/**
-* @brief This will 
-*/
+///
+/// @brief This will be the actual game of PanchitoJog
+///
 namespace octet {
   /// Scene containing a box with octet.
   class PanchitoJog : public app {
