@@ -1,10 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////
-//
-// (C) Juanmi Huertas Delgado 2014
-//
-// 	PanchitoObject represent the runner of the game
-//		This class is required by PanchitoJog
-//
+///
+/// @file PanchitoObject.h
+/// @author Juanmi Huertas Delgado
+/// @brief	PanchitoObject represent the runner of the game
+///		This class is required by PanchitoJog
+///
+////////////////////////////////////////////////////////////////////////////////
 
 namespace octet {
 	class PanchitoObject{
