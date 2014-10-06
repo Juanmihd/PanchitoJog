@@ -15,48 +15,51 @@ namespace octet {
 	class PanchitoObject{
 		//where is Panchito! (this position matches with the bottom of the hat, 
 		//						and the top of his body) CENTER of Panchito
-		/// This is the position of Panchito
+		/// @brief This is the position of Panchito
 		mat4t modelToWorld;
-		/// This is the node representing the whole Panchito
+		/// @brief This is the node representing the whole Panchito
 		scene_node *panchitoNode;
-		/// This is the node representing the hat of Panchito (to be able to move apart of the body)
+		/// @brief This is the node representing the hat of Panchito (to be able to move apart of the body)
 		scene_node *hatNode;
-		/// This is the node representing the body of Panchito (to be able to move it apart of the hat)
+		/// @brief This is the node representing the body of Panchito (to be able to move it apart of the hat)
 		scene_node *bodyNode;
 
 		//First version, Panchito is simple right now! (2 cylinders (hat) + 1 box (body)!)
-		/// This represent half of the width of Panchito
+		/// @brief This represent half of the width of Panchito
 		float halfWidth;
-		/// This represent half of the height of Panchito
+		/// @brief This represent half of the height of Panchito
 		float halfHeight;
 
 		//Panchito is easy to draw, he has two colors!
-		/// This vector has the color of the hat (black)
+		/// @brief This vector has the color of the hat (black)
 		vec4 colorHat;
-		/// This vector has the color of the body (red)
+		/// @brief This vector has the color of the body (red)
 		vec4 colorBody;
 
 		//Panchito is jogging! These variables defines its jumping and tilting
-		/// Represent the "jump" possition of Panchito, only to animate runing
+		/// @brief Represent the "jump" possition of Panchito, only to animate runing
 		float jump;
-		/// Represent the "tilt" possition of Panchito, only to animate runing
+		/// @brief Represent the "tilt" possition of Panchito, only to animate runing
 		float tilt;
-		/// Represent the tics of Panchito in the "jumping", only to animate runing
+		/// @brief Represent the tics of Panchito in the "jumping", only to animate runing
 		int jumpTics;
-		/// Represent the direction of Panchito in the "jumping", only to animate runing
+		/// @brief Represent the direction of Panchito in the "jumping", only to animate runing
 		int directionJump;
-		/// Represent the tics of Panchito in the "tilting", only to animate runing
+		/// @brief Represent the tics of Panchito in the "tilting", only to animate runing
 		int tiltTics;
-		/// Represent the direction of Panchito in the "tilting", only to animate runing
+		/// @brief Represent the direction of Panchito in the "tilting", only to animate runing
 		int directionTilt;
 
 	public:
+		/// @brief Constructor of the class PanchitoObject 
+		/// This function only sets to zero the pointers for safety reasons
 		PanchitoObject() {
 			panchitoNode = 0;
 			hatNode = 0;
 			bodyNode = 0;
 		}
-
+		/// @brief Destructor of the class PanchitoObject
+		/// This function only destroy the pointers for safety reasons
 		~PanchitoObject() {
 			delete panchitoNode;
 			delete hatNode;
